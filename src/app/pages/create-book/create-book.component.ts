@@ -29,13 +29,13 @@ export class CreateBookComponent implements OnInit {
     if (this.book.id === undefined) {
       this.bookService.addBook(this.book).subscribe((data) => {
         this.book = data;
-        alert('Add Book Success:\n Author:' + this.book.author + '\nTitle: ' + this.book.title);
+        alert('Add Book Success:\nAuthor:' + this.book.author + '\nTitle: ' + this.book.title);
         this.route.navigate(['/']);
       });
     } else {
       this.bookService.updateBook(this.book).subscribe((data) => {
         this.book = data;
-        alert('Update Book Success:\n Author:' + this.book.author + '\nTitle: ' + this.book.title);
+        alert('Update Book Success:\nAuthor:' + this.book.author + '\nTitle: ' + this.book.title);
         this.route.navigate(['/']);
       });
     }

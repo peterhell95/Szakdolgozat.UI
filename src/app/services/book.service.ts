@@ -33,7 +33,7 @@ export class BookService {
   }
   public rateBook(id, rate): Observable<Book> {
     const url = this.baseUrl + '/' + id + '/rate/' + rate ;
-    return this.http.put<Book>(url,{});
+    return this.http.put<Book>(url , {});
   }
 
   // Return assigned variable book

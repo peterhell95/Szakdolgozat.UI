@@ -5,14 +5,13 @@ import { Book } from './../../model/book';
 import { BookService } from './../../services/book.service';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-index-develop',
+  templateUrl: './index-develop.component.html',
+  styleUrls: ['./index-develop.component.css']
 })
-export class IndexComponent implements OnInit, AfterViewInit {
+export class IndexDevelopComponent implements OnInit, AfterViewInit {
 
   public books: Array<Book>;
-  public checked = false;
   constructor(
     private route: Router,
     private bookService: BookService
@@ -53,15 +52,15 @@ export class IndexComponent implements OnInit, AfterViewInit {
       this.getAllBooks();
     });
   }
-
+  public goBack(): void {
+    this.route.navigate(['/']);
+  }
   public goToAddBook(): void {
     const book: Book = new Book();
     this.bookService.setter(book);
     this.route.navigate(['/add']);
   }
-  public goToDevelop(): void {
-    this.route.navigate(['/index-develop']);
-  }
+
   public goToUpdateBook(book: Book): void {
     this.bookService.setter(book);
     this.route.navigate(['/add']);

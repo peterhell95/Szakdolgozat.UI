@@ -38,5 +38,4 @@ export class RateBookComponent implements OnInit {
   onRate($event: {oldValue: number, newValue: number, starRating: StarRatingComponent}) {
     this.rate = $event.newValue;
   }
-
-}
+ }
