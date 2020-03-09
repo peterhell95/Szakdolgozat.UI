@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="text-center">
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Rating</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of books ; let i = index" class="text-center">
+            <td>{{ i + 1}}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.author }}</td>
+            <td>{{ item.rate/item.ratecount | number : '1.2-2'  }}</td>
+            <td width="15%">
+              <button class="btn btn-primary" (click)="goToUpdateBook(item)">Update</button>
+            </td>
+            <td width="15%">
+              <button class="btn btn-danger" (click)="deleteBook(item.id)">Delete</button>
+            </td>
+            <td width="15%">
+              <button class="btn btn-danger" (click)="rateBook(item)">Rate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-right">
+      <h2>Do you want to add a new book?</h2>
+      <button class="btn btn-secondary" (click)="goToAddBook()">Add Book</button>
+    </div>
+  </div>
