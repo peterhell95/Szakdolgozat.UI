@@ -4,4 +4,5 @@ export class Book {
     public author: string;
     public rate: number;
     public ratecount: number;
+    public price: number;
 }

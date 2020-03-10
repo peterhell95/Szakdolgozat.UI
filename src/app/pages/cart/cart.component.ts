@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { BookService } from 'src/app/services/book.service';
@@ -8,7 +8,7 @@ import { BookService } from 'src/app/services/book.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
 
   public selectedBooks: Array<Book> = [];
   public totalPrice = 0;
@@ -21,18 +21,25 @@ export class CartComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    // this.selectedBooks.forEach(function (value) {
-    //   this.totalPrice += value.price;  });
+    this.selectedBooks.forEach(function (value) {
+      this.totalPrice += value.price;
+    });
   }
 
   public deleteBook(id: number): void {
-    this.bookService.deleteBook(id).subscribe(() => {
-      alert('Delete Book Success');
-      // this.getAllBooks();
-    });
+    const index = this.selectedBooks.findIndex((i) => i.id === id);
+    if (index > -1) {
+      this.selectedBooks.splice(index, 1);
+    }
   }
 
   public goBack(): void {
     this.route.navigate(['/']);
+  }
+
+  public buy(): void {
+    alert('the purchase was successful');
+    this.route.navigate(['/']);
+    this.selectedBooks = [];
   }
 }
