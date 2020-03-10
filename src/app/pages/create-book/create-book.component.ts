@@ -30,13 +30,13 @@ export class CreateBookComponent implements OnInit {
       this.bookService.addBook(this.book).subscribe((data) => {
         this.book = data;
         alert('Add Book Success:\nAuthor:' + this.book.author + '\nTitle: ' + this.book.title);
-        this.route.navigate(['/']);
+        this.route.navigate(['/index-develop']);
       });
     } else {
       this.bookService.updateBook(this.book).subscribe((data) => {
         this.book = data;
         alert('Update Book Success:\nAuthor:' + this.book.author + '\nTitle: ' + this.book.title);
-        this.route.navigate(['/']);
+        this.route.navigate(['/index-develop']);
       });
     }
   }
