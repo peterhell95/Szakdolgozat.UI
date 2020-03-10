@@ -1,4 +1,22 @@
 <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="text-left">
+        <h1 style="font-size:300%;" >BOOKS</h1>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="text-right">
+        <h2>Selected books: {{selectedBooks.length}}</h2>
+        <button class="btn btn-success" (click)="goToCart()">My Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+   <br> <!--TODO -->
+</div>
+<div class="container">
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -6,6 +24,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Author</th>
+            <th>Price</th>
             <th>Rating</th>
             <th>Rate</th>
             <th>Add to Cart</th>
@@ -16,6 +35,7 @@
             <td>{{ i + 1}}</td>
             <td>{{ item.title }}</td>
             <td>{{ item.author }}</td>
+            <td>{{ item.price }}</td>
             <td>{{ item.rate/item.ratecount | number : '1.2-2'  }}</td>
             <td width="15%">
               <button class="btn btn-danger" (click)="rateBook(item)">Rate</button>
@@ -36,6 +56,6 @@
     </div>
     <div class="text-right">
       <h2>would you like to develop this website?</h2>
-      <button class="btn btn-secondary" (click)="goToDevelop()">Develop</button>
+      <button class="btn btn-success" (click)="goToDevelop()">Develop</button>
     </div>
   </div>

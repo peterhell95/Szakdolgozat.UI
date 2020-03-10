@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   public books: Array<Book>;
   public checked = false;
+  public selectedBooks: Array<Book> = [];
   constructor(
     private route: Router,
     private bookService: BookService
@@ -47,24 +48,14 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.route.navigate(['/rate']);
   }
 
-  public deleteBook(id: number): void {
-    this.bookService.deleteBook(id).subscribe(() => {
-      alert('Delete Book Success');
-      this.getAllBooks();
-    });
-  }
-
-  public goToAddBook(): void {
-    const book: Book = new Book();
-    this.bookService.setter(book);
-    this.route.navigate(['/add']);
-  }
   public goToDevelop(): void {
     this.route.navigate(['/index-develop']);
   }
-  public goToUpdateBook(book: Book): void {
-    this.bookService.setter(book);
-    this.route.navigate(['/add']);
+
+  public goToCart(): void {
+    // TODO
+    // this.bookService.setter(this.selectedBooks);
+    this.route.navigate(['/cart']);
   }
 
 }

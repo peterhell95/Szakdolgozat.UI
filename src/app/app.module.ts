@@ -13,6 +13,7 @@ import { CreateBookComponent } from './pages/create-book/create-book.component';
 import { IndexDevelopComponent } from './pages/index-develop/index-develop.component';
 import { IndexComponent } from './pages/index/index.component';
 import { RateBookComponent } from './pages/rate-book/rate-book/rate-book.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RateBookComponent } from './pages/rate-book/rate-book/rate-book.compone
     IndexDevelopComponent,
     CreateBookComponent,
     RateBookComponent,
+    CartComponent,
 
   ],
   imports: [
