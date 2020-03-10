@@ -12,7 +12,7 @@ export class BookService {
   public book: Book = new Book();
   constructor(private http: HttpClient) { }
 
-   public getAllBook(): Observable<Book[]> {
+  public getAllBook(): Observable<Book[]> {
     const url = this.baseUrl + '/list';
     return this.http.get<Book[]>(url);
   }
@@ -32,9 +32,11 @@ export class BookService {
     return this.http.delete<Book>(url);
   }
   public rateBook(id, rate): Observable<Book> {
-    const url = this.baseUrl + '/' + id + '/rate/' + rate ;
-    return this.http.put<Book>(url , {});
+    const url = this.baseUrl + '/' + id + '/rate/' + rate;
+    return this.http.put<Book>(url, {});
   }
+
+  //public navigateBook()
 
   // Return assigned variable book
   getter() {

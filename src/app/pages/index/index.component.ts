@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { Book } from './../../model/book';
 import { BookService } from './../../services/book.service';
@@ -15,9 +15,16 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public checked = false;
   public selectedBooks: Array<Book> = [];
   constructor(
-    private route: Router,
-    private bookService: BookService
-  ) { }
+    private route: ActivatedRoute,
+    private bookService: BookService,
+    private router: Router
+  ) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.selectedBooks = this.router.getCurrentNavigation().extras.state.selectedBooks;
+      }
+    });
+  }
 
   ngOnInit() {
     this.books = [];
@@ -45,17 +52,35 @@ export class IndexComponent implements OnInit, AfterViewInit {
 
   public rateBook(book: Book): void {
     this.bookService.setter(book);
-    this.route.navigate(['/rate']);
+    this.router.navigate(['/rate']);
   }
 
   public goToDevelop(): void {
-    this.route.navigate(['/index-develop']);
+    this.router.navigate(['/index-develop']);
   }
 
   public goToCart(): void {
-    // TODO
-    // this.bookService.setter(this.selectedBooks);
-    this.route.navigate(['/cart']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        selectedBooks: this.selectedBooks
+      }
+    };
+    this.router.navigate(['/cart'], navigationExtras);
+  }
+  public clearCart(): void {
+    this.selectedBooks = [];
+    this.ngAfterViewInit();
+  }
+
+  public checkBook(event, book: Book): void {
+    if (event.checked) {
+      this.selectedBooks.push(book);
+    } else {
+      const index = this.selectedBooks.indexOf(book);
+      if (index > -1) {
+        this.selectedBooks.splice(index, 1);
+      }
+    }
   }
 
 }

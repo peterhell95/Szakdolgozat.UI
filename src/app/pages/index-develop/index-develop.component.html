@@ -17,7 +17,8 @@
           <td>{{ i + 1}}</td>
           <td>{{ item.title }}</td>
           <td>{{ item.author }}</td>
-          <td>{{ item.rate/item.ratecount | number : '1.2-2'  }}</td>
+          <td>{{ item.rate/item.ratecount | number : '1.2-2'  }} <img src="assets/images/logo.png">
+          </td>
           <td>{{ item.price }} Ft</td>
           <td width="15%">
             <button class="btn btn-primary" (click)="goToUpdateBook(item)">Update</button>

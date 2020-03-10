@@ -1,16 +1,17 @@
 <div class="container">
-    <div class="row" style="text-align:center">
-      <div class="col-md-10">
-        <h1>Rate the {{book.author}} : {{book.title}} book!</h1>
-        <br>
-      </div>
-    </div>
-    <div class="col-md-10" style="text-align:center">
-       <star-rating  [value]="rate" totalstars="5" checkedcolor="red" uncheckedcolor="black" size="80px" readonly="false" (rate)="onRate($event)"></star-rating>
-    </div>
-    <br>
-    <div class="col-md-10" style="text-align:center" >
-      <p><button class="btn btn-secondary" (click)="goToList()">Go To Book List</button>&nbsp;&nbsp;
-      <button class="btn btn-primary" (click)="rateBook()">Done</button></p>
+  <div class="row" style="text-align:center">
+    <div class="col-md-10">
+      <h1>Rate the {{book.author}} : {{book.title}} book!</h1>
+      <br>
     </div>
   </div>
+  <div class="col-md-10" style="text-align:center">
+    <star-rating [value]="rate" totalstars="5" checkedcolor="gold" uncheckedcolor="black" size="80px" readonly="false"
+      (rate)="onRate($event)"></star-rating>
+  </div>
+  <br>
+  <div class="col-md-10" style="text-align:center">
+    <p><button class="btn btn-secondary" (click)="goToList()">Go To Book List</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" (click)="rateBook()">Done</button></p>
+  </div>
+</div>

@@ -1,48 +1,50 @@
 <div class="container">
     <div class="row">
-      <div class="col-sm">
-        <div class="text-left">
-          <h1 style="font-size:300%;">YOUR CART</h1>
+        <div class="col-sm">
+            <div class="text-left">
+                <h1 style="font-size:300%;">YOUR CART</h1>
+            </div>
         </div>
-      </div>
-      <div class="col-sm">
-        <div class="text-right">
-          <h2>Selected books: {{selectedBooks.length}}</h2>
-          <button class="btn btn-success" (click)="goBack()">Go Back</button>
+        <div class="col-sm">
+            <div class="text-right">
+                <h2>Selected books: {{selectedBooks.length}}</h2>
+                <button class="btn btn-success" (click)="goBack()">Go Back</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="container">
-     <br> <!--TODO -->
-  </div>
-  <div class="container">
-      <div class="table-responsive">
+</div>
+<div class="container">
+    <br>
+    <!--TODO -->
+</div>
+<div class="container">
+    <div class="table-responsive">
         <table class="table">
-          <thead>
-            <tr class="text-center">
-              <th>ID</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Price</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of selectedBooks ; let i = index" class="text-center">
-              <td>{{ i + 1}}</td>
-              <td>{{ item.title }}</td>
-              <td>{{ item.author }}</td>
-              <td width="15%">
-                <button class="btn btn-danger" (click)="deleteBook(item.id)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
+            <thead>
+                <tr class="text-center">
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of selectedBooks ; let i = index" class="text-center">
+                    <td>{{ i + 1}}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.price }} Ft</td>
+                    <td width="15%">
+                        <button class="btn btn-danger" (click)="deleteBook(item.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
-      </div>
-      <div class="text-right">
-        <h2>would you like to buy this books?</h2>
-        <h2>Total price: {{totalPrice}}</h2>
-        <button class="btn btn-success" (click)="buy()">BUY</button>
-      </div>
     </div>
+    <div class="text-right">
+        <h2>would you like to buy this books?</h2>
+        <h2>Total price: {{totalPrice}} Ft</h2>
+        <button class="btn btn-success" (click)="buy()">BUY</button>
+    </div>
+</div>
