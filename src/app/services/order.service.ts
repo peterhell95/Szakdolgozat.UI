@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Order } from '../model/order';
 
@@ -12,6 +13,15 @@ export class OrderService {
   public book: Order;
   constructor(private http: HttpClient) { }
 
+  public getAllOrder(): Observable<Order[]> {
+    const url = this.baseUrl + '/list';
+    return this.http.get<Order[]>(url);
+  }
+
+  public addOrder(order: Order): Observable<Order> {
+    const url = this.baseUrl + '/add';
+    return this.http.post<Order>(url, order);
+  }
 
   getter() {
     return this.book;

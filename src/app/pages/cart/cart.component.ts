@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { Delivery } from 'src/app/model/delivery';
 import { Order } from 'src/app/model/order';
+import { OrderService } from 'src/app/services/order.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit, OnChanges {
   ];
 
   constructor(
+    private orderService: OrderService,
     private route: ActivatedRoute,
     private router: Router, ) {
     this.route.queryParams.subscribe(params => {
@@ -66,8 +68,12 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   public buy(): void {
-    const order: Order = new Order(1, this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
+    let order: Order = new Order(1, this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
     console.log(order);
+    // this.orderService.setter(order);
+    this.orderService.addOrder(order).subscribe((data) => {
+      order = data;
+    });
     alert('the purchase was successful');
     this.router.navigate(['/']);
     this.selectedBooks = [];
