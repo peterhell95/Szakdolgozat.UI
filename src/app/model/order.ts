@@ -6,9 +6,8 @@ export class Order {
     public delivery: string;
     public price: number;
     public book: Book[];
-    constructor(id: number, comment: string, delivery: string, price: number, book: Book[]) {
+    constructor(comment: string, delivery: string, price: number, book: Book[]) {
 
-        this.id = id;
         this.comment = comment;
         this.delivery = delivery;
         this.price = price;

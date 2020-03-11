@@ -68,7 +68,7 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   public buy(): void {
-    let order: Order = new Order(1, this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
+    let order: Order = new Order(this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
     console.log(order);
     // this.orderService.setter(order);
     this.orderService.addOrder(order).subscribe((data) => {
