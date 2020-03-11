@@ -36,7 +36,6 @@ export class BookService {
     return this.http.put<Book>(url, {});
   }
 
-  //public navigateBook()
 
   // Return assigned variable book
   getter() {

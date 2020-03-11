@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { Delivery } from 'src/app/model/delivery';
+import { Order } from 'src/app/model/order';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class CartComponent implements OnInit, OnChanges {
 
   form: FormGroup;
   public selectedBooks: Array<Book> = [];
+  public orderBook: Array<Order> = [];
   public totalPrice = 0;
-  selectedValue = 'Choose One';
+  selectedDelivery = 'Choose One';
+  comment = '';
   deliverys: Delivery[] = [
     { value: 'One-Day Delivery', viewValue: 'One-Day Delivery' },
     { value: 'Item Express Delivery', viewValue: 'Item Express Delivery' },
@@ -63,6 +66,8 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   public buy(): void {
+    const order: Order = new Order(1, this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
+    console.log(order);
     alert('the purchase was successful');
     this.router.navigate(['/']);
     this.selectedBooks = [];
