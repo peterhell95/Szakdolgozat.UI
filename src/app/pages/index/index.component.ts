@@ -60,16 +60,26 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   public goToCart(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        selectedBooks: this.selectedBooks
-      }
-    };
-    this.router.navigate(['/cart'], navigationExtras);
+    if (this.selectedBooks.length > 0) {
+      const navigationExtras: NavigationExtras = {
+        state: {
+          selectedBooks: this.selectedBooks
+        }
+      };
+      this.router.navigate(['/cart'], navigationExtras);
+    } else {
+      alert('Choose one book!');
+    }
   }
+
   public clearCart(): void {
-    this.selectedBooks = [];
-    this.ngAfterViewInit();
+    if (this.selectedBooks.length === 0) {
+      alert('Cart is emty!');
+    } else {
+      this.selectedBooks = [];
+      this.ngAfterViewInit();
+      alert('the cart has been cleared');
+    }
   }
 
   public checkBook(event, book: Book): void {

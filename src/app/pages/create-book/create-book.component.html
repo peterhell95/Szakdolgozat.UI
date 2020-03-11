@@ -1,31 +1,48 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <label>Title</label>
+    <div class="col-sm">
+      <div class="text-left">
+        <h1 style="font-size:300%;">BOOK ADDING</h1>
+        <br><br>
+      </div>
     </div>
-    <div class="col-md-10">
-      <input type="text" class="form-control" [(ngModel)]="book.title" />
+    <div class="col-sm">
+      <div class="text-right">
+        <h2>You can add a new book to the list!</h2>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <label>Author</label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" class="form-control" [(ngModel)]="book.author" />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <label>Price</label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" class="form-control" [(ngModel)]="book.price" />
-    </div>
-  </div>
-  <br>
-  <div class="text-right">
-    <button class="btn btn-secondary" (click)="goToList()">Go To Book List</button>&nbsp;
-    <button class="btn btn-primary" (click)="addBook()">Done</button>
   </div>
 </div>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <label>Title</label>
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="form-control" [(ngModel)]="book.title" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Author</label>
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="form-control" [(ngModel)]="book.author" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Price</label>
+      </div>
+      <div class="col-md-10">
+        <input type="text" class="form-control" [(ngModel)]="book.price" />
+      </div>
+    </div>
+    <br>
+    <div class="text-right">
+      <button class="btn btn-secondary" (click)="goToList()">Go To Book List</button>&nbsp;
+      <button class="btn btn-info" (click)="goToDevelop()">Go To Develop</button>&nbsp;
+      <button class="btn btn-primary" (click)="addBook()">Done</button>
+    </div>
+  </div>

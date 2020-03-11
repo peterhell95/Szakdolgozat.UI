@@ -25,6 +25,10 @@ export class CreateBookComponent implements OnInit {
     this.route.navigate(['/']);
   }
 
+  public goToDevelop(): void {
+    this.route.navigate(['/index-develop']);
+  }
+
   public addBook(): void {
     if (this.book.id === undefined) {
       this.bookService.addBook(this.book).subscribe((data) => {
