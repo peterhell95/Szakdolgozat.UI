@@ -3,3 +3,30 @@
 @import "~font-awesome/css/font-awesome.css"; */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+    
+    padding: .4375em 0;
+    border-bottom-color: black;
+    border-style: dotted;
+    border-top-color: black;
+    border-top-style:dotted;
+    border-width: 2px;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #1fa230;
+}
+
+.mat-form.field.mat-focused.mat-primary .mat-select-arrow {
+    color: rgba(25, 214, 34, 0.7);
+}
+.mat-select-arrow {
+    color: rgba(25, 214, 34, 0.7);
+}
+
+.mat-select-value {
+    color: black;
+    text-align: center;
+    font-size: medium;
+    font-weight:500;
+}
