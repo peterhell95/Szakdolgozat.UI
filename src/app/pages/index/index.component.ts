@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { Book } from './../../model/book';
@@ -14,10 +15,14 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public books: Array<Book>;
   public checked = false;
   public selectedBooks: Array<Book> = [];
+  showModal: boolean;
+  registerForm: FormGroup;
+  submitted = false;
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -29,6 +34,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.books = [];
     this.bookService.getter();
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+
   }
 
   ngAfterViewInit() {
@@ -90,6 +100,27 @@ export class IndexComponent implements OnInit, AfterViewInit {
       if (index > -1) {
         this.selectedBooks.splice(index, 1);
       }
+    }
+  }
+
+  // Show-Hide Modal Check
+  show() {
+    this.showModal = true;
+  }
+  // Bootstrap Modal Close event
+  hide() {
+    this.showModal = false;
+  }
+
+  get f() { return this.registerForm.controls; }
+  onSubmit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+    if (this.submitted) {
+      this.showModal = false;
     }
   }
 
