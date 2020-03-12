@@ -55,6 +55,11 @@ export class IndexDevelopComponent implements OnInit, AfterViewInit {
   public goBack(): void {
     this.route.navigate(['/']);
   }
+
+  public goToOrders(): void {
+    this.route.navigate(['/orders']);
+  }
+
   public goToAddBook(): void {
     const book: Book = new Book();
     this.bookService.setter(book);

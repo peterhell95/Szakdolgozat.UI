@@ -15,6 +15,8 @@ import { CreateBookComponent } from './pages/create-book/create-book.component';
 import { IndexDevelopComponent } from './pages/index-develop/index-develop.component';
 import { IndexComponent } from './pages/index/index.component';
 import { RateBookComponent } from './pages/rate-book/rate-book/rate-book.component';
+import { CartBillComponent } from './pages/cart/cart-bill/cart-bill.component';
+import { OrdersComponent } from './pages/index-develop/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { RateBookComponent } from './pages/rate-book/rate-book/rate-book.compone
     CreateBookComponent,
     RateBookComponent,
     CartComponent,
+    CartBillComponent,
+    OrdersComponent,
 
   ],
   imports: [

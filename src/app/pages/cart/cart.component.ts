@@ -73,9 +73,9 @@ export class CartComponent implements OnInit, OnChanges {
     // this.orderService.setter(order);
     this.orderService.addOrder(order).subscribe((data) => {
       order = data;
+      alert('the purchase was successful');
+      this.router.navigate(['/cart-bill', data.id]);
     });
-    alert('the purchase was successful');
-    this.router.navigate(['/']);
     this.selectedBooks = [];
   }
   public clear(): void {

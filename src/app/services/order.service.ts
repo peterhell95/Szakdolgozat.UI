@@ -18,6 +18,11 @@ export class OrderService {
     return this.http.get<Order[]>(url);
   }
 
+  public getBill(id: number): Observable<Order> {
+    const url = this.baseUrl + '/list/' + id;
+    return this.http.get<Order>(url);
+  }
+
   public addOrder(order: Order): Observable<Order> {
     const url = this.baseUrl + '/add';
     return this.http.post<Order>(url, order);
