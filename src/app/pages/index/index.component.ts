@@ -15,9 +15,15 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public books: Array<Book>;
   public checked = false;
   public selectedBooks: Array<Book> = [];
-  showModal: boolean;
+  public filter = '';
+  //login-register
+  showModalLogin: boolean;
+  loginForm: FormGroup;
+  submittedLogin = false;
+  showModalRegister: boolean;
   registerForm: FormGroup;
-  submitted = false;
+  submittedRegister = false;
+
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
@@ -34,6 +40,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.books = [];
     this.bookService.getter();
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -42,11 +52,30 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.getAllBooks();
+    if(this.filter === ''){
+        this.getAllBooks();
+    }else{
+      this.search(this.filter);
+    }
   }
 
   private getAllBooks(): any {
     this.bookService.getAllBook().subscribe((data) => {
+      this.books = data;
+      this.books.sort((a, b) => {
+        if (a.id > b.id) {
+          return 1;
+        } else if (a.id < b.id) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    });
+  }
+
+  public search(filter: string): any{
+      this.bookService.getFilteredBooks(filter).subscribe((data) => {
       this.books = data;
       this.books.sort((a, b) => {
         if (a.id > b.id) {
@@ -104,24 +133,46 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   // Show-Hide Modal Check
-  show() {
-    this.showModal = true;
+  showLogin() {
+    this.showModalLogin = true;
   }
   // Bootstrap Modal Close event
-  hide() {
-    this.showModal = false;
+  hideLogin() {
+    this.showModalLogin = false;
   }
 
-  get f() { return this.registerForm.controls; }
-  onSubmit() {
-    this.submitted = true;
+  get f() { return this.loginForm.controls; }
+  onSubmitLogin() {
+    this.submittedLogin = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
-    if (this.submitted) {
-      this.showModal = false;
+    if (this.submittedLogin) {
+      this.showModalLogin = false;
     }
   }
+
+    // Show-Hide Modal Check
+  showRegister() {
+    this.showModalRegister = true;
+  }
+  // Bootstrap Modal Close event
+  hideRegister() {
+    this.showModalRegister = false;
+  }
+
+  get g() { return this.registerForm.controls; }
+  onSubmitRegister() {
+    this.submittedRegister = true;
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+    if (this.submittedRegister) {
+      this.showModalRegister = false;
+    }
+  }
+
 
 }

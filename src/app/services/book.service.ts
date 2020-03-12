@@ -17,6 +17,11 @@ export class BookService {
     return this.http.get<Book[]>(url);
   }
 
+  public getFilteredBooks(filter: string): Observable<Book[]> {
+    const url = this.baseUrl + '/list/' + filter;
+    return this.http.get<Book[]>(url);
+  }
+
   public addBook(book: Book): Observable<Book> {
     const url = this.baseUrl + '/add';
     return this.http.post<Book>(url, book);
