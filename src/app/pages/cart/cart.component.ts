@@ -20,6 +20,8 @@ export class CartComponent implements OnInit, OnChanges {
   public totalPrice = 0;
   selectedDelivery = 'Choose One';
   comment = '';
+  name = '';
+  address = '';
   deliverys: Delivery[] = [
     { value: 'One-Day Delivery', viewValue: 'One-Day Delivery' },
     { value: 'Item Express Delivery', viewValue: 'Item Express Delivery' },
@@ -68,9 +70,7 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   public buy(): void {
-    let order: Order = new Order(this.comment, this.selectedDelivery, this.totalPrice, this.selectedBooks);
-    console.log(order);
-    // this.orderService.setter(order);
+    let order: Order = new Order(this.comment, this.selectedDelivery, this.totalPrice, this.name, this.address, this.selectedBooks);
     this.orderService.addOrder(order).subscribe((data) => {
       order = data;
       alert('the purchase was successful');

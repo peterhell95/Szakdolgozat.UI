@@ -22,6 +22,7 @@ export class OrdersComponent implements OnInit {
     this.orderService.getter();
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit() {
     this.getAllOrders();
   }
