@@ -18,7 +18,7 @@ export class BookService {
   }
 
   public getFilteredBooks(filter: string): Observable<Book[]> {
-    const url = this.baseUrl + '/list/' + filter;
+    const url = this.baseUrl + '/list/' + '?filter=' + filter;
     return this.http.get<Book[]>(url);
   }
 
