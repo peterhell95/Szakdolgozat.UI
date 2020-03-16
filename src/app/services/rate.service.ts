@@ -23,5 +23,10 @@ export class RateService {
     const url = this.baseUrl + '/add';
     return this.http.post<Rate>(url, rate);
   }
+
+  public getRate(filter: number): Observable<Rate[]> {
+    const url = this.baseUrl + '/list/' + filter;
+    return this.http.get<Rate[]>(url);
+  }
 }
 
