@@ -16,7 +16,7 @@ export class CartBillComponent implements OnInit {
 
   public purchasedOrder: Order;
   public id: number;
-  public rateList: Array<Rate>;
+  public rateList: Array<Rate> = [];
   public selectedBooks: Array<Book> = [];
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +41,11 @@ export class CartBillComponent implements OnInit {
     this.getBill(this.id);
     this.getRate(this.id);
   }
-
+  public ciklus(): void {
+    this.rateList.forEach(element => {
+      this.getBook(element.bookid);
+    });
+  }
   public getBill(id: number): void {
     this.orderService.getBill(id).subscribe((data) => {
       this.purchasedOrder = data;
@@ -50,8 +54,16 @@ export class CartBillComponent implements OnInit {
   public getRate(id: number): void {
     this.rateService.getRate(id).subscribe((data) => {
       this.rateList = data;
+      this.ciklus();
     });
   }
+
+  public getBook(id: number): void {
+    this.rateService.getBook(id).subscribe((data) => {
+      this.selectedBooks.push(data);
+    });
+  }
+
   public rateBook(book: Book): void {
     this.bookService.setter(book);
     this.router.navigate(['/rate']);

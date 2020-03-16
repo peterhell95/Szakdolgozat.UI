@@ -25,8 +25,12 @@ export class RateService {
   }
 
   public getRate(filter: number): Observable<Rate[]> {
-    const url = this.baseUrl + '/list/' + filter;
+    const url = this.baseUrl + '/list/rate/' + filter;
     return this.http.get<Rate[]>(url);
+  }
+  public getBook(filter: number): Observable<Book> {
+    const url = this.baseUrl + '/list/book/' + filter;
+    return this.http.get<Book>(url);
   }
 }
 
