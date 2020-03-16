@@ -4,7 +4,9 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { Delivery } from 'src/app/model/delivery';
 import { Order } from 'src/app/model/order';
+import { Rate } from 'src/app/model/rate';
 import { OrderService } from 'src/app/services/order.service';
+import { RateService } from 'src/app/services/rate.service';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class CartComponent implements OnInit, OnChanges {
 
   constructor(
     private orderService: OrderService,
+    private rateService: RateService,
     private route: ActivatedRoute,
     private router: Router, ) {
     this.route.queryParams.subscribe(params => {
@@ -71,13 +74,21 @@ export class CartComponent implements OnInit, OnChanges {
 
   public buy(): void {
     let order: Order = new Order(this.comment, this.selectedDelivery, this.totalPrice, this.name, this.address, this.selectedBooks);
+    console.log(this.selectedBooks.length);
+
     this.orderService.addOrder(order).subscribe((data) => {
       order = data;
+      this.selectedBooks.forEach(element => {
+        let rate: Rate = new Rate(data.id, element.id);
+        this.rateService.addRate(rate).subscribe((data) => {
+          rate = data;
+        });
+      });
       alert('the purchase was successful');
       this.router.navigate(['/cart-bill', data.id]);
     });
-    this.selectedBooks = [];
   }
+
   public clear(): void {
     alert('the cart has been cleared');
     this.router.navigate(['/']);

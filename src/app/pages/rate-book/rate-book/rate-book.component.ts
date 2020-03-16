@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StarRatingComponent } from 'ng-starrating';
 import { Book } from 'src/app/model/book';
 import { BookService } from 'src/app/services/book.service';
+import { RateService } from 'src/app/services/rate.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class RateBookComponent implements OnInit {
   public rate: number;
   constructor(
     private route: Router,
-    private bookService: BookService
+    private bookService: BookService,
+    private rateService: RateService
   ) { }
 
   ngOnInit() {
@@ -29,13 +31,20 @@ export class RateBookComponent implements OnInit {
   }
 
   public rateBook(): void {
-      this.bookService.rateBook(this.book.id, this.rate).subscribe((data) => {
-        this.book = data;
-        alert('Rate Book Success');
-        this.route.navigate(['/']);
-      });
+    this.bookService.rateBook(this.book.id, this.rate).subscribe((data) => {
+      this.book = data;
+      alert('Rate Book Success');
+      this.route.navigate(['/']);
+    });
   }
-  onRate($event: {oldValue: number, newValue: number, starRating: StarRatingComponent}) {
+  public rateBook2(): void {
+    this.rateService.rateBook(this.book.id, this.rate).subscribe((data) => {
+      this.book = data;
+      alert('Rate Book Success');
+      this.route.navigate(['/']);
+    });
+  }
+  onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
     this.rate = $event.newValue;
   }
- }
+}

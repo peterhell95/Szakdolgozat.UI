@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public checked = false;
   public selectedBooks: Array<Book> = [];
   public filter = '';
-  //login-register
+  // login-register
   showModalLogin: boolean;
   loginForm: FormGroup;
   submittedLogin = false;
@@ -52,9 +52,9 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if(this.filter === ''){
-        this.getAllBooks();
-    }else{
+    if (this.filter === '') {
+      this.getAllBooks();
+    } else {
       this.search(this.filter);
     }
   }
@@ -74,8 +74,8 @@ export class IndexComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public search(filter: string): any{
-      this.bookService.getFilteredBooks(filter).subscribe((data) => {
+  public search(filter: string): any {
+    this.bookService.getFilteredBooks(filter).subscribe((data) => {
       this.books = data;
       this.books.sort((a, b) => {
         if (a.id > b.id) {
@@ -153,7 +153,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
     }
   }
 
-    // Show-Hide Modal Check
+  // Show-Hide Modal Check
   showRegister() {
     this.showModalRegister = true;
   }

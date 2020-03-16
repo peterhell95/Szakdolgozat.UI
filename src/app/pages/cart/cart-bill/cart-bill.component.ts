@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Book } from 'src/app/model/book';
 import { Order } from 'src/app/model/order';
+import { BookService } from 'src/app/services/book.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -10,13 +12,14 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class CartBillComponent implements OnInit {
 
-  public purchasedBook: Order;
+  public purchasedOrder: Order;
   public id: number;
-
+  public selectedBooks: Array<Book> = [];//= [{ id: 140, title: 'asd', author: 'asd', rate: 5, ratecount: 1, price: 1200 }];
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    private router: Router, ) {
+    private bookService: BookService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -36,9 +39,14 @@ export class CartBillComponent implements OnInit {
 
   public getBill(id: number): void {
     this.orderService.getBill(id).subscribe((data) => {
-      this.purchasedBook = data;
+      this.purchasedOrder = data;
     });
   }
+  public rateBook(book: Book): void {
+    this.bookService.setter(book);
+    this.router.navigate(['/rate']);
+  }
+
   public backToHome(): void {
     this.router.navigate(['/']);
   }
