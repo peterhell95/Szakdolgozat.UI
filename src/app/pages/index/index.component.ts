@@ -89,11 +89,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
     });
   }
 
-  public rateBook(book: Book): void {
-    this.bookService.setter(book);
-    this.router.navigate(['/rate']);
-  }
-
   public goToDevelop(): void {
     this.router.navigate(['/index-develop']);
   }
