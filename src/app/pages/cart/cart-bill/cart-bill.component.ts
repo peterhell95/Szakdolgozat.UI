@@ -66,7 +66,12 @@ export class CartBillComponent implements OnInit {
 
   public rateBook(book: Book): void {
     this.bookService.setter(book);
-    this.router.navigate(['/rate']);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: this.id
+      }
+    };
+    this.router.navigate(['/rate'], navigationExtras);
   }
 
   public backToHome(): void {
