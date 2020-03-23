@@ -1,45 +1,57 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="text-left">
-        <h1 style="font-size:300%;">BOOKS</h1>
-        <button class="btn btn-primary" (click)="goToDevelop()">Sign in</button>&nbsp;
-        <button class="btn btn-primary" (click)="showRegister()">Register</button>&nbsp;
-        <button class="btn btn-primary" (click)="showLogin()">Login</button>
+  <div class="h">
+    <div fxLayout="row" fxLayoutAlign="space-between-center">
+      <div fxFlex="50">
+        <div class="text-left">
+          <h1 style="font-size:300%;">BOOKS</h1>
+          <button class="btn btn-primary" (click)="goToDevelop()">Sign in</button>&nbsp;
+          <button class="btn btn-primary" (click)="showRegister()">Register</button>&nbsp;
+          <button class="btn btn-primary" (click)="showLogin()">Login</button>
+        </div>
       </div>
-    </div>
-    <div class="col-sm">
-      <div class="text-right">
-        <h2>Selected books: {{selectedBooks.length}}</h2>
-        <button class="btn btn-success" (click)="goToCart()">My Cart</button>&nbsp;
-        <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+      <div fxFlex="50">
+        <div class="text-right">
+          <h1>Selected books: {{selectedBooks.length}}</h1>
+          <button class="btn btn-success" (click)="goToCart()">My Cart</button>&nbsp;
+          <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="container">
   <br>
-  <div class="row">
-    <div class="col-sm">
-      <div class="text-left">
-        <h2 style="padding-top: 8px;">
-          Search:<input type="text" class="form-control" [(ngModel)]="filter" />
-        </h2>
+  <div fxLayout="row" fxLayoutAlign="space-between-center">
+    <div fxFlex="33">
+      <div fxFlex="30" style="text-align: center;">
+        <h2> Name:</h2>
       </div>
+      <div fxFlex="70"> <input type="text" class="form-control" [(ngModel)]="filter" /></div>
     </div>
-    <div class="col-sm">
-      <div class="text-left">
-        <br>
-        <br>
-        <button class="btn btn-success" (click)="search(filter)">Search</button>
+    <div fxFlex="33">
+      <div fxFlex="40" style="text-align: center;">
+        <h2> Price between:</h2>
       </div>
+      <div fxFlex="20"><input type="text" class="form-control" [(ngModel)]="minPrice" /></div>
+      <div fxFlex="10" style="text-align: center;">
+        <h2>-</h2>
+      </div>
+      <div fxFlex="20"><input type="text" class="form-control" [(ngModel)]="maxPrice" /></div>
     </div>
-    <div class="col-sm">
-      <div class="text-left">
-        <!-- TODO -->
+    <div fxFlex="33">
+      <div fxFlex="40" style="text-align: center;">
+        <h2> Rate between:</h2>
       </div>
+      <div fxFlex="20"><input type="text" class="form-control" [(ngModel)]="minRate" /></div>
+      <div fxFlex="10" style="text-align: center;">
+        <h2>-</h2>
+      </div>
+      <div fxFlex="20"><input type="text" class="form-control" [(ngModel)]="maxRate" /></div>
     </div>
   </div>
+  <button class="btn btn-success" (click)="searchByName(filter)">Search By Name</button>&nbsp;
+  <button class="btn btn-success" (click)="searchByPrice(minPrice,maxPrice)">Search By Price</button>&nbsp;
+  <button class="btn btn-success" (click)="searchByRate(minRate,maxRate)">Search By Rate</button>
 </div>
 <div class="container">
   <div class="table-responsive">

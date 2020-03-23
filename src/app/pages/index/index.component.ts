@@ -15,7 +15,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public books: Array<Book>;
   public checked = false;
   public selectedBooks: Array<Book> = [];
-  public filter = '';
+  filter = '';
+  minPrice: number;
+  maxPrice: number;
+  minRate: number;
+  maxRate: number;
   // login-register
   showModalLogin: boolean;
   loginForm: FormGroup;
@@ -52,43 +56,48 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.filter === '') {
-      this.getAllBooks();
-    } else {
-      this.search(this.filter);
-    }
+    this.getAllBooks();
   }
 
   private getAllBooks(): any {
     this.bookService.getAllBook().subscribe((data) => {
       this.books = data;
-      this.books.sort((a, b) => {
-        if (a.id > b.id) {
-          return 1;
-        } else if (a.id < b.id) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
+      this.sortById();
     });
   }
 
-  public search(filter: string): any {
-    this.bookService.getFilteredBooks(filter).subscribe((data) => {
+  public searchByPrice(filter: number, filter2: number): any {
+    this.bookService.getFilteredBooksByPrice(filter, filter2).subscribe((data) => {
       this.books = data;
-      this.books.sort((a, b) => {
-        if (a.id > b.id) {
-          return 1;
-        } else if (a.id < b.id) {
-          return -1;
-        } else {
-          return 0;
-        }
-      });
+      this.sortById();
     });
   }
 
+  public searchByName(filter: string): any {
+    this.bookService.getFilteredBooksByName(filter).subscribe((data) => {
+      this.books = data;
+      this.sortById();
+    });
+  }
+
+  public searchByRate(filter: number, filter2: number): any {
+    this.bookService.getFilteredBooksByRate(filter, filter2).subscribe((data) => {
+      this.books = data;
+      this.sortById();
+    });
+  }
+
+  public sortById(): void {
+    this.books.sort((a, b) => {
+      if (a.id > b.id) {
+        return 1;
+      } else if (a.id < b.id) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
   public goToDevelop(): void {
     this.router.navigate(['/index-develop']);
   }

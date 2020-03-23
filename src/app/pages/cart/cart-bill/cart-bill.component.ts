@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
 import { Order } from 'src/app/model/order';
 import { Rate } from 'src/app/model/rate';
@@ -15,6 +15,7 @@ import { RateService } from 'src/app/services/rate.service';
 export class CartBillComponent implements OnInit {
 
   public purchasedOrder: Order;
+  public purchasedOrders: Array<Order>;
   public id: number;
   public rateList: Array<Rate> = [];
   public selectedBooks: Array<Book> = [];
@@ -61,6 +62,15 @@ export class CartBillComponent implements OnInit {
   public getBook(id: number): void {
     this.rateService.getBook(id).subscribe((data) => {
       this.selectedBooks.push(data);
+      this.selectedBooks.sort((a, b) => {
+        if (a.id > b.id) {
+          return 1;
+        } else if (a.id < b.id) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
     });
   }
 

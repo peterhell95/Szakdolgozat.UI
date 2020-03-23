@@ -19,6 +19,11 @@ export class RateService {
     return this.http.put<Book>(url, {});
   }
 
+  public update(id): Observable<Rate> {
+    const url = this.baseUrl + '/update/' + id;
+    return this.http.put<Rate>(url, id);
+  }
+
   public addRate(rate: Rate): Observable<Rate> {
     const url = this.baseUrl + '/add';
     return this.http.post<Rate>(url, rate);

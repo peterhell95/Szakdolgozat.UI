@@ -35,7 +35,7 @@ export class RateBookComponent implements OnInit {
   }
 
   public goToList(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/cart-bill/' + this.id]);
   }
 
   public rateBook(): void {
@@ -43,14 +43,14 @@ export class RateBookComponent implements OnInit {
       this.book = data;
       console.log(this.id);
       alert('Rate Book Success');
-      this.router.navigate(['/']);
+      this.router.navigate(['/cart-bill/' + this.id]);
     });
   }
   public rateBook2(): void {
     this.rateService.rateBook(this.book.id, this.rate).subscribe((data) => {
       this.book = data;
       alert('Rate Book Success');
-      this.router.navigate(['/']);
+      this.router.navigate(['/cart-bill/' + this.id]);
     });
   }
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {

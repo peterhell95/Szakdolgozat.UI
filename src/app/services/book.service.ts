@@ -17,8 +17,18 @@ export class BookService {
     return this.http.get<Book[]>(url);
   }
 
-  public getFilteredBooks(filter: string): Observable<Book[]> {
-    const url = this.baseUrl + '/list/' + '?filter=' + filter;
+  public getFilteredBooksByName(filter: string): Observable<Book[]> {
+    const url = this.baseUrl + '/searchByName?filter=' + filter;
+    return this.http.get<Book[]>(url);
+  }
+
+  public getFilteredBooksByPrice(filter: number, filter2: number): Observable<Book[]> {
+    const url = this.baseUrl + '/searchByPrice?filter=' + filter + '&filter2=' + filter2;
+    return this.http.get<Book[]>(url);
+  }
+
+  public getFilteredBooksByRate(filter: number, filter2: number): Observable<Book[]> {
+    const url = this.baseUrl + '/searchByRate?filter=' + filter + '&filter2=' + filter2;
     return this.http.get<Book[]>(url);
   }
 
