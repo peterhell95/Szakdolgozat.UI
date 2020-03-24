@@ -20,6 +20,7 @@ export class CartBillComponent implements OnInit {
   public updateid: number;
   public rateList: Array<Rate> = [];
   public selectedBooks: Array<Book> = [];
+  public ratedBooks: Array<Book> = [];
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
@@ -50,10 +51,17 @@ export class CartBillComponent implements OnInit {
   }
   public ciklus(): void {
     this.rateList.forEach(element => {
-      this.getBook(element.bookid);
       if (element.bookid === this.updateid) {
         this.rateService.update(element.id).subscribe((data) => {
+          this.selectedBooks = [];
+          location.reload();
         });
+      }
+    });
+    this.rateList.forEach(element => {
+      this.getBook2(element.bookid);
+      if (element.rated === false) {
+        this.getBook(element.bookid);
       }
     });
   }
@@ -67,12 +75,28 @@ export class CartBillComponent implements OnInit {
       this.rateList = data;
       this.ciklus();
     });
+
   }
 
   public getBook(id: number): void {
     this.rateService.getBook(id).subscribe((data) => {
       this.selectedBooks.push(data);
       this.selectedBooks.sort((a, b) => {
+        if (a.id > b.id) {
+          return 1;
+        } else if (a.id < b.id) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    });
+  }
+
+  public getBook2(id: number): void {
+    this.rateService.getBook(id).subscribe((data) => {
+      this.ratedBooks.push(data);
+      this.ratedBooks.sort((a, b) => {
         if (a.id > b.id) {
           return 1;
         } else if (a.id < b.id) {
