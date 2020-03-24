@@ -49,11 +49,11 @@ export class CartBillComponent implements OnInit {
     this.getBill(this.id);
     this.getRate(this.id);
   }
+
   public ciklus(): void {
     this.rateList.forEach(element => {
       if (element.bookid === this.updateid) {
         this.rateService.update(element.id).subscribe((data) => {
-          this.selectedBooks = [];
           location.reload();
         });
       }
@@ -65,6 +65,7 @@ export class CartBillComponent implements OnInit {
       }
     });
   }
+
   public getBill(id: number): void {
     this.orderService.getBill(id).subscribe((data) => {
       this.purchasedOrder = data;
@@ -79,6 +80,7 @@ export class CartBillComponent implements OnInit {
   }
 
   public getBook(id: number): void {
+    this.selectedBooks = [];
     this.rateService.getBook(id).subscribe((data) => {
       this.selectedBooks.push(data);
       this.selectedBooks.sort((a, b) => {

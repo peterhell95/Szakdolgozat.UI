@@ -15,11 +15,11 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" style="padding: 20px;">
   <div class="container">
     <div class="row">
       <div class="col-md-2">
-        <label>Title</label>
+        <h2>Title:</h2>
       </div>
       <div class="col-md-10">
         <input type="text" class="form-control" [(ngModel)]="book.title" />
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <label>Author</label>
+        <h2>Author:</h2>
       </div>
       <div class="col-md-10">
         <input type="text" class="form-control" [(ngModel)]="book.author" />
@@ -35,7 +35,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <label>Price</label>
+        <h2>Price:</h2>
       </div>
       <div class="col-md-10">
         <input type="text" class="form-control" [(ngModel)]="book.price" />
@@ -44,7 +44,7 @@
     <br>
     <div class="text-right">
       <button class="btn btn-secondary" (click)="goToList()">Go To Book List</button>&nbsp;
-      <button class="btn btn-info" (click)="goToDevelop()">Go To Develop</button>&nbsp;
-      <button class="btn btn-primary" (click)="addBook()">Done</button>
+      <button class="btn btn-primary" (click)="goToDevelop()">Go To Edit</button>&nbsp;
+      <button class="btn btn-success" (click)="addBook()">Done</button>
     </div>
   </div>
