@@ -49,9 +49,13 @@
       <div fxFlex="20"><input type="text" class="form-control" [(ngModel)]="maxRate" /></div>
     </div>
   </div>
-  <button class="btn btn-success" (click)="searchByName(filter)">Search By Name</button>&nbsp;
-  <button class="btn btn-success" (click)="searchByPrice(minPrice,maxPrice)">Search By Price</button>&nbsp;
-  <button class="btn btn-success" (click)="searchByRate(minRate,maxRate)">Search By Rate</button>
+</div>
+<div class=container>
+  <div class="search">
+    <div fxLayout="row" fxLayoutAlign="space-between-center">
+      <button class="btn btn-success" (click)="search()">Search</button>
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="table-responsive">

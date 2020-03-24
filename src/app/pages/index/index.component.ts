@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 
 import { Book } from './../../model/book';
 import { BookService } from './../../services/book.service';
@@ -15,7 +16,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   public books: Array<Book>;
   public checked = false;
   public selectedBooks: Array<Book> = [];
-  filter = '';
+  filter: string;
   minPrice: number;
   maxPrice: number;
   minRate: number;
@@ -31,6 +32,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
+    private searchService: SearchService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {
@@ -59,29 +61,53 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.getAllBooks();
   }
 
+
+  public search(): void {
+    if (this.filter === undefined && this.minPrice === undefined && this.maxPrice === undefined) {
+      this.getAllBooks();
+    } else if (this.filter !== undefined && this.minPrice === undefined && this.maxPrice === undefined) {
+      this.searchByName(this.filter);
+    } else if (this.filter === undefined && this.minPrice !== undefined && this.maxPrice !== undefined) {
+      this.searchByPrice(this.minPrice, this.maxPrice);
+    } else if (this.filter !== undefined && this.minPrice !== undefined && this.maxPrice !== undefined) {
+      this.searchByAll(this.filter, this.minPrice, this.maxPrice);
+    }
+    this.filter = undefined;
+    this.minPrice = undefined;
+    this.maxPrice = undefined;
+
+  }
+
   private getAllBooks(): any {
-    this.bookService.getAllBook().subscribe((data) => {
+    this.searchService.getAllBook().subscribe((data) => {
+      this.books = data;
+      this.sortById();
+    });
+  }
+
+  public searchByAll(filter: string, filter2: number, filter3: number): any {
+    this.searchService.getFilteredBooks(filter, filter2, filter3).subscribe((data) => {
       this.books = data;
       this.sortById();
     });
   }
 
   public searchByPrice(filter: number, filter2: number): any {
-    this.bookService.getFilteredBooksByPrice(filter, filter2).subscribe((data) => {
+    this.searchService.getFilteredBooksByPrice(filter, filter2).subscribe((data) => {
       this.books = data;
       this.sortById();
     });
   }
 
   public searchByName(filter: string): any {
-    this.bookService.getFilteredBooksByName(filter).subscribe((data) => {
+    this.searchService.getFilteredBooksByName(filter).subscribe((data) => {
       this.books = data;
       this.sortById();
     });
   }
 
   public searchByRate(filter: number, filter2: number): any {
-    this.bookService.getFilteredBooksByRate(filter, filter2).subscribe((data) => {
+    this.searchService.getFilteredBooksByRate(filter, filter2).subscribe((data) => {
       this.books = data;
       this.sortById();
     });

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 
 import { Book } from './../../model/book';
 import { BookService } from './../../services/book.service';
@@ -14,6 +15,7 @@ export class IndexDevelopComponent implements OnInit, AfterViewInit {
   public books: Array<Book>;
   constructor(
     private route: Router,
+    private searchService: SearchService,
     private bookService: BookService
   ) { }
 
@@ -27,7 +29,7 @@ export class IndexDevelopComponent implements OnInit, AfterViewInit {
   }
 
   private getAllBooks(): any {
-    this.bookService.getAllBook().subscribe((data) => {
+    this.searchService.getAllBook().subscribe((data) => {
       this.books = data;
       this.books.sort((a, b) => {
         if (a.id > b.id) {

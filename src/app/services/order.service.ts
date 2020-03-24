@@ -10,7 +10,7 @@ import { Order } from '../model/order';
 export class OrderService {
 
   private baseUrl: any = 'http://localhost:8081/order';
-  public book: Order;
+  public order: Order;
   constructor(private http: HttpClient) { }
 
   public getAllOrder(): Observable<Order[]> {
@@ -29,11 +29,11 @@ export class OrderService {
   }
 
   getter() {
-    return this.book;
+    return this.order;
   }
 
   // Set Value into variable book
-  setter(book: Order) {
-    this.book = book;
+  setter(order: Order) {
+    this.order = order;
   }
 }

@@ -15,5 +15,9 @@
     border: black;
     border-style: groove;
     border-color: black;
-    background-color: rgb(183, 199, 219);
+    background-color: rgb(224, 224, 224);
+}
+.search{
+    padding-bottom: 20px;
+    padding-left: 25px;
 }
