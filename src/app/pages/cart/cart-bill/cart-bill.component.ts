@@ -17,6 +17,7 @@ export class CartBillComponent implements OnInit {
   public purchasedOrder: Order;
   public purchasedOrders: Array<Order>;
   public id: number;
+  public updateid: number;
   public rateList: Array<Rate> = [];
   public selectedBooks: Array<Book> = [];
   constructor(
@@ -25,6 +26,11 @@ export class CartBillComponent implements OnInit {
     private bookService: BookService,
     private rateService: RateService,
     private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.updateid = this.router.getCurrentNavigation().extras.state.id;
+      }
+    });
   }
 
   ngOnInit() {
@@ -45,6 +51,10 @@ export class CartBillComponent implements OnInit {
   public ciklus(): void {
     this.rateList.forEach(element => {
       this.getBook(element.bookid);
+      if (element.bookid === this.updateid) {
+        this.rateService.update(element.id).subscribe((data) => {
+        });
+      }
     });
   }
   public getBill(id: number): void {

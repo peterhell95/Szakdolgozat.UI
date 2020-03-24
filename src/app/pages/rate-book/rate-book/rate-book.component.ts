@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { StarRatingComponent } from 'ng-starrating';
 import { Book } from 'src/app/model/book';
 import { BookService } from 'src/app/services/book.service';
@@ -38,20 +38,19 @@ export class RateBookComponent implements OnInit {
     this.router.navigate(['/cart-bill/' + this.id]);
   }
 
+
   public rateBook(): void {
-    this.bookService.rateBook(this.book.id, this.rate).subscribe((data) => {
-      this.book = data;
-      console.log(this.id);
-      alert('Rate Book Success');
-      this.router.navigate(['/cart-bill/' + this.id]);
-    });
-  }
-  public rateBook2(): void {
     this.rateService.rateBook(this.book.id, this.rate).subscribe((data) => {
       this.book = data;
       alert('Rate Book Success');
-      this.router.navigate(['/cart-bill/' + this.id]);
+      const navigationExtras: NavigationExtras = {
+        state: {
+          id: this.book.id
+        }
+      };
+      this.router.navigate(['/cart-bill/' + this.id], navigationExtras);
     });
+
   }
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
     this.rate = $event.newValue;
