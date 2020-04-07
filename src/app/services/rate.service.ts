@@ -10,7 +10,7 @@ import { Book } from './../model/book';
 })
 export class RateService {
 
-  private baseUrl: any = 'http://localhost:8082/rate';
+  private baseUrl: any = 'http://localhost:8084/api/rate';
   public book: Book = new Book();
   constructor(private http: HttpClient) { }
 
