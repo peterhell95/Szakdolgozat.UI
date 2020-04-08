@@ -8,7 +8,7 @@ import { Book } from './../model/book';
   providedIn: 'root'
 })
 export class BookService {
-  private baseUrl: any = 'http://192.168.104.189:31278/api/book';
+  private baseUrl: any = 'http://172.17.45.227:31278/api/book';
   public book: Book = new Book();
   constructor(private http: HttpClient) { }
 
