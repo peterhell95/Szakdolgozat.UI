@@ -9,7 +9,7 @@ import { Book } from './../model/book';
 })
 export class SearchService {
 
-  private baseUrl: any = 'http://localhost:8084/api/search';
+  private baseUrl: any = 'http://192.168.104.189:31278/api/search';
   public book: Book = new Book();
   constructor(private http: HttpClient) { }
 
