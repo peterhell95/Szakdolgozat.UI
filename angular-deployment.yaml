@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment # 1
+metadata:
+  name: angular
+  labels:
+    app: angular
+spec:
+  selector:
+    matchLabels:
+      app: angular
+  replicas: 2 # 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate # 3
+    rollingUpdate:
+      maxUnavailable: 1 # 4
+      maxSurge: 1 # 5
+  template:
+    metadata:
+      labels:
+        app: angular # 6
+    spec:
+      containers:
+        - image: peterhell95/angular:jenkins
+          imagePullPolicy: Always # 7
+          name: angular
+          ports:
+            - containerPort: 80
