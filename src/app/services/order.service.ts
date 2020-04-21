@@ -9,7 +9,7 @@ import { Order } from '../model/order';
 })
 export class OrderService {
 
-  private baseUrl: any = 'http://192.168.82.251:31786/api/order';
+  private baseUrl: any = 'http://192.168.63.188:32144/api/order';
   public order: Order;
   constructor(private http: HttpClient) { }
 
