@@ -11,7 +11,7 @@ pipeline {
         stage ('Docker Login') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    bat 'docker login -u $user -p $pass' 
+                    bat 'docker login -u ${user} -p ${pass}' 
                 }
             }
         }
