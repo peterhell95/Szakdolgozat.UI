@@ -9,7 +9,6 @@ pipeline {
                    bat '''
       echo %user% $pass$
     '''
-  }
                 }
             }
         }
