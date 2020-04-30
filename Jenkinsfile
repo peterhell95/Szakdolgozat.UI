@@ -1,14 +1,7 @@
 pipeline {
     agent any
     stages {
-        
-        stage ('Docker Build') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    bat 'docker login -u $user -p $pass$' 
-                }
-            }
-        }
+
         
         stage ('Docker Login') {
             steps {
